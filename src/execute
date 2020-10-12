@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $1 == "e" ]
+then
+    rm -f intensity.log range.log
+    $(sudo chmod 666 /dev/ttyUSB0)
+    sudo ./map &
+fi
+
+if [ $1 == "k" ]
+then
+    export pi=$(pgrep map)
+    sudo kill -2 $pi
+    echo "e" >> /dev/ttyUSB0
+fi
+
